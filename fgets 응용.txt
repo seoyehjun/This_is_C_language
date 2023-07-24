@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+int main(void)
+{
+	char name[10];
+	char phone_num[20];
+	char address[20];
+    
+	/*이름, 전화번호, 주소를 입력하는 부분입니다.*/
+	printf("이름을 입력하세요:");
+	fgets(name, sizeof(name), stdin);
+	printf("전화번호를 입력하세요:");
+	fgets(phone_num, sizeof(phone_num), stdin);
+	printf("주소를 입력하세요:");
+	fgets(address, sizeof(address), stdin);
+
+	/*fgets함수 특성상 '/0'(널문자) 저장이전에 '/n'(개행문자)를 같이저장하기
+	때문에 개행문자'/n'를 널문자'/0'로 변환시켜 줄바꿈을 방지합니다.*/
+	name[strlen(name) - 1] = '\0';
+	phone_num[strlen(phone_num) - 1] = '\0';
+	address[strlen(address) - 1] = '\0';
+
+	/*출력부입니다(한줄에 출력합니다)*/
+	printf("이름:%s,전화번호:%s,주소:%s", name, phone_num, address);
+
+	return 0;
+}

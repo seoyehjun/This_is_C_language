@@ -1,0 +1,49 @@
+#include<stdio.h>
+
+int main(void)
+{
+	double ary1[4] = { 1.5,2.3,7.7,4.9 };
+	double ary2[4] = { 19.4,5.2,4.0,9.1 };
+	double ary3[4] = { 0.3,7.2,8.4,6.6 };
+	double *pary[3] = { ary1,ary2,ary3 };
+	double max;
+	int i, j, n,q=0;
+	double ave[3];
+	double tot=0;
+	
+	/* 이 반복문은 각배열의 평균을 구하기위한것 */
+	for (j = 0; j < 3; j++)
+	{
+		for (i = 0; i < 4; i++)
+		{
+			tot += pary[j][i];  //어느 한 배열에서의 배열요소들의 총합
+		}
+		ave[j] = tot / 4.0; // 배열요소들의 [총합/4](평균)
+		tot = 0; // 각배열값들 의 합인tot값을 다음에쓰기위해 0으로 초기화
+	}
+
+	max = ave[0];
+	
+	/*이 반복문은 어느배열의 평균이 재일큰지 판별하는반복문*/
+	for (n = 0; n < 3; n++)
+	{
+		if (ave[q] < ave[n + 1]) //q값은 반복문에따라 변하지 않는다(대신 더 큰 평균값을 가진 배열이나오면 바뀐다.)
+		{
+			max = ave[n + 1];
+			q = n + 1;  //q값은 첫번째 배열의 평균보다 큰평균이 나온다면 바뀐다.
+		}
+	}
+	
+	printf("%d번째 배열은:", q + 1);
+	
+	for (i = 0; i < 4; i++)
+	{
+		printf("%.1lf ", pary[q][i]);
+	}
+	printf("평균은 %.1lf", max);
+
+
+	return 0;
+
+
+	}

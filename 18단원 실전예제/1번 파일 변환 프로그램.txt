@@ -1,0 +1,38 @@
+#include<stdio.h>
+
+int main()
+{
+	int  num,  totwrite = 0;
+
+	FILE *fap, *fbp;
+
+
+	fap = fopen("a.txt", "r");
+	if (fap == NULL)
+	{
+		printf("파일이 열리지 않았습니다.");
+		return 1;
+	}
+
+	fbp = fopen("b.dat", "wb");
+	if (fap == NULL)
+	{
+		printf("파일이 열리지 않았습니다.");
+		return 1;
+	}
+
+	while (!feof(fap))
+	{
+		fscanf(fap, "%d", &num);
+
+		totwrite += fwrite(&num,1, sizeof(num),  fbp);
+	}
+
+	
+	printf("출력 파일의 크기:%d바이트", totwrite);
+
+	fclose(fap);
+	fclose(fbp);
+
+	return 0;
+}

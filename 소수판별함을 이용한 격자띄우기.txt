@@ -1,0 +1,59 @@
+#include<stdio.h>
+
+int disting(int num);
+int main(void)
+{
+	int add;
+	int i;
+	int n=0;
+
+	printf("판별하고 싶은 수를 쓰세요:");
+	scanf("%d", &add);
+
+	int res1;
+
+	for (i = 2; i <= add; i++)
+	{
+		res1 = disting(i); //소수판별함수 호출
+		
+			if (res1 == 1)//disting(소수판별함수 가 1을반환하면 소수로 판단하여 프린트)
+			{
+				printf("%d   ", i);
+				n += 1;
+				if (n%5==0)//만약 if 문밖에 if문이 잇다면 다음소수가 나올때까지 n+=1이 안되므로 계속 띄어짐
+			{
+				printf("\n");//숫자가 5개 나올때마다 한줄내리기위한 '위한'프린트                  **
+			}
+			}
+			
+	}
+	
+	return 0;
+}
+
+/*소수를 판별하는 함수입니다*/
+int disting(int num)
+{
+	int i;
+	int temp = 0;
+
+	for (i = 1; i <= num; i++)
+	{
+		if (num%i == 0)
+		{
+			temp += i;
+		}
+
+	}
+	int result;
+
+	if (temp == 1 + num)
+	{
+		result = 1;
+	}
+	else
+	{
+		result = 0;
+	}
+	return result;
+}

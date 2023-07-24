@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(void)
+{
+	char str[30];
+	char allstr[100] = { 0 };
+
+	while (1)
+	{
+		printf("단어입력(단어입력 끝내고 싶을시end입력):");
+		scanf("%s", str);
+		if (strcmp("end",str)==0)break;
+		strcat(allstr, str);
+		printf("현재까지의 문자열:%s\n", allstr);
+	}
+
+	return 0;
+}
+

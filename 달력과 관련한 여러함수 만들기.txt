@@ -1,0 +1,81 @@
+#include<stdio.h>
+int fun_dist(int*pm);
+void func_change(int *pm);
+void func_printf(int *pm);
+void reverse(int *pm, int size);
+
+int main(void)
+{
+	int res;
+	int month[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+	int size = sizeof(month) / sizeof(month[0]);
+	res = fun_dist(month);
+
+	printf("31일의 총 달수는%d입니다.", res);
+	
+}
+int fun_dist(int *pm)
+{
+	int i;
+	int temp = 0;
+
+	for (i=0; i < 12; i++)
+	{
+		if (pm[i] == 31)   //12월까지 일수가 31일인 일이 나올떄마다 +1을 해주어 반환합니다.
+		{
+			temp += 1;
+		}
+	}
+	return temp;
+}
+void func_change(int *pm)
+{
+	*(pm + 1) = 29;    //2월을 29일로 바꾸어 줍니다.
+}
+void func_printf(int *pm)
+{
+
+	int i;
+	for (i = 0; i < 5; i++)  //5줄씩 끈어서 나오게 프린트 하였습니다.
+	{
+		printf("%d", pm[i]);
+	}
+	
+	printf("\n");
+	
+	for (i = 5; i < 10; i++)
+	{
+		printf("%d", pm[i]);
+	}
+	
+	printf("\n");
+	
+	for (i = 10; i < 12; i++)
+	{
+		printf("%d", pm[i]);
+	}
+}
+void reverse(int *pm, int size)
+{
+	int temp;
+	int *ary1 = pm;
+	int *aryl = pm + (size - 1);
+
+	while (aryl > ary1)
+	{
+		*ary1 = temp;
+		*ary1 = *aryl;
+		*aryl = temp;
+
+		aryl++;
+		ary1++;
+	}
+	
+	int i;
+	for (i = 0; i < size; i++)
+	{
+		printf("%d", pm[i]);
+	}
+
+	return;
+}

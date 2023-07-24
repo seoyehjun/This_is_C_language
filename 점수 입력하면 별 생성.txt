@@ -1,0 +1,38 @@
+#include<stdio.h>
+
+void print_graph(int *ps, int size);
+int main(void)
+{
+	int score[5];
+	
+int size = sizeof(score) / sizeof(score[0]);
+	int i;
+
+	printf("점수를 5개 입력하세요\n");
+	for (i = 0; i < 5; i++)
+	{
+		printf("○입력:");
+		scanf("%d", &score[i]);
+	}
+	
+	print_graph(&score, size);
+
+	return 0;
+}
+
+void print_graph(int *ps, int size)
+{
+	int i;
+	int j;
+
+	printf("    ----※당신의 점수는※----\n");
+	for (i = 0; i < 5; i++)
+	{
+		printf("ㅣ%dㅣ    ", ps[i]);
+		for (j = 0; j < ps[i] / 5; j++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+}

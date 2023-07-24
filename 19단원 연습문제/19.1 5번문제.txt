@@ -1,0 +1,36 @@
+#include<stdio.h>
+
+#define CHECK_CNT
+#define LEVEL 2
+
+int main(void)
+{
+	int many, i, count, tot = 0;
+	int num[10];
+	double avg;
+
+	printf("양수의 갯수를 입력하세요:");
+	scanf("%d", &many);
+	
+#ifdef CHECK_CNT
+	printf("입력받을갯수는 %d", many);
+#endif
+
+	for (i = 0; i < many; i++)
+	{
+		printf("\n\n양수입력(%d번째):",i+1);
+		scanf("%d", &num[i]);
+		tot += num[i];
+
+#ifdef CHECK_CNT
+		printf("양수의 갯수:%d\n누적된값:%d", i + 1, tot);
+#endif // CHECK_CNT
+
+#if defined(CHECK_CNT) &&LEVEL==2
+		avg = tot / (i + 1.0);
+		printf("입력된 값들의 평균은 %.1lf입니다", avg);
+#endif
+	}
+
+	return 0;
+}

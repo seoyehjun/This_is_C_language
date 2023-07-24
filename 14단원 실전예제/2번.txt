@@ -1,0 +1,46 @@
+#include<stdio.h>
+ 
+int main(void)
+{
+	char ch1[50][100];
+	char ch2[100];
+	int i = 0, j = 0, size = sizeof(ch1) / sizeof(ch1[0]),q=0;
+
+	while (strcmp(ch1[i-1],"end")!=0)
+	{
+	    printf("단어입력(종료는 end 입력:");
+		scanf("%s", ch1[i]);
+		i++;
+	}
+	printf("\n#총 %d개의 단어가 입력되었습니다!\n\n", i - 1);
+	strcpy(ch1[i-1], "\0");
+
+	do
+	{
+		q = 0;
+		printf("--→검색할 단어를 입력하시오:");
+		scanf("%s", ch2);
+		
+		
+		for (i = 0; i < size; i++) 
+		{
+			if (strcmp(ch1[i], ch2) == 0)
+			{
+				printf("▷%d번째에 같은단어가 있습니다!◁\n", i + 1);
+				q++;
+			}
+		}
+		if (q > 0) 
+		{
+			printf("\n\n"); 
+			continue;
+		}
+
+		printf("#없는 단어입니다.\n\n");
+		
+	}
+	while (strcmp(ch2, "end") != 0);
+	
+	
+	return 0;
+}

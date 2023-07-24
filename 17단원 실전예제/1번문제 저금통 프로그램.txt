@@ -1,0 +1,92 @@
+#include<stdio.h>
+
+typedef struct money_box
+{
+	int w500;
+	int w100;
+	int w50;
+	int w10;
+
+}MONEY_BOX;
+
+void init(MONEY_BOX *);
+void save(MONEY_BOX *, int , int );
+int total(MONEY_BOX *);
+
+int main(void)
+{
+	int unit=0, cnt=0;// 동전종류와 갯수 선언
+	int tot;//저금통내 금액합
+
+	MONEY_BOX s; //저금통 선언
+	
+	
+
+	init(&s);// 저금통 초기화 함수
+
+
+	save(&s, unit, cnt);//저금통에 넣을금액 입력 함수
+
+
+	tot = total(&s);
+
+
+	printf("=======>총저금액은%d<=======", tot);
+
+
+	return 0;
+	
+}
+
+void init(MONEY_BOX *s)
+{
+	s->w10 = 0;
+	s->w100 = 0;
+	s->w50 = 0;
+	s->w500 = 0;
+}
+
+void save(MONEY_BOX *s, int unit, int cnt)
+{
+	cnt = 0;
+
+	printf("\n\n§넣고싶은 동전종류를 입력하세요(500,100,50,10)§");
+	scanf("%d", &unit);
+
+    if (unit < 0)
+	{
+		return;// 0원 입력시 바로main 함수로 귀환
+	}
+
+	printf("\n\n§동전의 갯수를 입력하세요§");
+	scanf("%d", &cnt);
+	
+	
+	if (unit == 500)
+	{
+		s->w500 = cnt;
+	}
+	else if (unit == 100)
+	{
+		s->w100 = cnt;
+	}
+	else if (unit == 50)
+	{
+		s->w50 = cnt;
+	}
+	else if (unit == 10)
+	{
+		s->w10 = cnt;
+	}
+	
+	save(s, unit, cnt);//0보다 작은값이 나오기전까지 이 재호출은 되지않는다.
+}
+
+int total(MONEY_BOX *s)
+{
+	int tot;
+
+	tot = (s->w10 * 10) + (s->w50 * 50) + (s->w100 * 100) + (s->w500 * 500);
+
+	return tot;
+}

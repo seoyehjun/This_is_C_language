@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int total_score(int korean, int english, int math);
+void printf_score(int korean, int english, int math, int total);
+double average(double total);
+
+int main(void)
+{
+	int korean;
+	int english;
+	int math;
+	int total;
+
+	printf("국어의 점수를 입력하세요:");
+	scanf("%d", &korean);
+	printf("영어의 점수를 입력하세요:");
+	scanf("%d", &english);
+	printf("수학의 점수를 입력하세요:");
+	scanf("%d", &math);
+
+	total = total_score(korean, english, math);
+	printf_score(korean, english, math, total);
+
+	return 0;
+}
+
+int total_score(int korean, int english, int math)
+{
+	int res;
+	res = korean + english + math;
+	return res;
+}
+
+double average(double total)
+{
+	double res;
+	res = total / 3;
+	return res;
+
+}
+
+void printf_score(int korean, int english, int math, int total)
+{
+	printf("\t   =========< 성 적 표>==========\n\n");
+	printf("	-------------------------------------\n");
+	printf("	□국어   영어   수학   총점   평균 □\n");
+	printf("	-------------------------------------\n");
+	printf("	□%d      %d     %d     %d    %.1lf□\n", korean, english, math, total, average(total));
+	printf("	-------------------------------------\n\n");
+}

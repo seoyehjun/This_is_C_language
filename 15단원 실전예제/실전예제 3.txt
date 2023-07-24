@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<string.h>
+
+void init_intro(char(*intro)[80], char **pint);
+int input_intro(char(*intro)[80]);
+void sort_intro(char **pint, int cnt);
+void printf_intro(int mode, void *vp, int cnt);
+
+int main(void)
+{
+	char intro[10][80];
+	char *pint[10];
+	int cnt;
+
+	init_intro(intro, pint);
+	cnt = input_intro(intro);
+	sort_intro(pint, cnt);
+	printf_intro(1, pint, cnt);
+	printf("\n\n");
+	printf_intro(0, intro, cnt);
+
+	return 0;
+}
+int input_intro(char(*intro)[80])
+{
+	int cnt = 0;
+	int i;
+
+	for (i = 0; i < 10; i++)
+	{
+		printf("%d번째 단어를 입력하시오", i + 1);
+		gets(intro[i]);
+		
+
+		if (strcmp(intro[i], "end") == 0) break;  //end입력시 for문탈출(입력 중단)
+		++cnt;
+	}
+	return cnt;
+}
+void init_intro(char(*intro)[80], char **pint)
+{
+	int i;
+	
+	for (i = 0; i < 10; i++)
+	{
+		*(pint + i) = intro[i];  //주솟값에 주솟값을 넣는거였다.  포인터배열의 요소(포인터)=이차원배열의 요소의 주소
+	}
+}
+void sort_intro(char **pint, int cnt)
+{
+	int i,j;
+	char *temp;
+
+	for (i = 0; i < cnt; i++)
+	{
+		for (j = i; j < cnt; j++)
+		{
+			if (strcmp(pint[i], pint[j]) == 1)
+			{
+				temp = pint[i];//2중 포인터를 참조하면 일반포인터 공간!!--temp는 포인터라 역시 주소공간
+				pint[i] = pint[j];
+				pint[j] = temp;
+			}
+		}
+	}
+}
+
+void printf_intro(int mode, void *vp, int cnt)
+{
+	int i;
+	char (*intro)[80] = vp;
+	char **pint = vp;
+
+	
+	if (mode == 1)
+	{
+		printf("========§사전순으로 출력§========\n");
+		for (i = 0; i < cnt; i++)
+		{
+			printf("▷%s◁\n", pint[i]);
+		}
+    }
+	if (mode == 0)
+	{
+		printf("========§입력순서대로 출력§========\n");
+		for (i = 0; i < cnt; i++)
+		{
+			printf("▷%s◁\n", intro[i]);
+		}
+	}
+	return;
+}

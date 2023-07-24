@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<string.h>
+
+void change_value(char* pa, char*pb);
+int main(void)
+{
+	char str1[30], str2[30], str3[30];
+	char temp[30];
+	
+	printf("세 단어 입력:");
+	gets(str1); gets(str2); gets(str3);
+
+	if (strcmp(str1,str2) == 1)
+	{
+		change_value(str1, str2);
+	}
+	if (strcmp(str2, str3) == 1)
+	{
+		change_value(str2, str3);
+	}
+	if (strcmp(str1, str3) == 1)
+	{
+		change_value(str1, str3);
+	}
+
+	printf("%s, %s, %s", str1, str2, str3);
+
+	return 0;
+}
+void change_value(char *pa, char *pb)
+{
+	char temp[30];
+	strcpy(temp, pa);
+	strcpy(pa, pb);
+	strcpy(pb, temp);
+
+	return;
+}
+

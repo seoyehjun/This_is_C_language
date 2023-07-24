@@ -1,0 +1,57 @@
+#include<stdio.h>
+
+
+typedef struct profile 
+{
+	char name[20];
+	double grade;
+	int english;
+}PROFILE;
+
+void input_data(PROFILE *);
+void elite(PROFILE *);
+
+int main(void)
+{
+	PROFILE new_staff[5];
+
+	input_data(new_staff);
+	elite(new_staff);
+}
+
+void input_data(PROFILE *new_staff)
+{
+	int i;
+	
+	for (i = 0; i < 5; i++)
+	{
+		printf("%d번째 신입사원의 이름을 입력하세요", i+1);
+		scanf("%s", new_staff[i].name);
+		printf("\n");
+		
+		printf("%d번째 신입사원의 학점을 입력하세요", i + 1);
+		scanf("%lf", &(new_staff[i].grade));
+		printf("\n");
+
+		printf("%d번째 신입사원의 TOEIC성적을 입력하세요", i + 1);
+		scanf("%d", &(new_staff[i].english));
+		printf("\n");
+	} 
+	
+}
+
+void elite(PROFILE *new_staff)
+{
+	int i;
+
+	
+	printf("§엘리트학생 명단§");
+
+	for (i = 0; i < 5; i++)
+	{
+		if (new_staff[i].english >= 900 && new_staff[i].grade >= 4.0)
+		{
+			printf("▷%s◀\n\n", new_staff[i].name);
+		}
+	}
+}

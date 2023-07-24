@@ -1,0 +1,30 @@
+#include<stdio.h>
+
+typedef  struct train TRAIN;
+struct train
+{
+	int seats;
+	TRAIN *next;
+};
+
+int main(void)
+{
+	TRAIN *head = NULL, *tail;
+	int i;
+
+	for (i = 0; i < 5; i++)
+	{
+		if (head == NULL)
+		{
+			head = tail = (TRAIN*)malloc(sizeof(TRAIN));//널포인터였는데 tail포인터를 연결
+		}
+		else
+		{
+			tail->next = (TRAIN *)malloc(sizeof(TRAIN));//tail자료형 안에있는next포인터에 공간할당
+			tail = tail->next;
+            
+		}
+	}
+	
+	return 0;
+}

@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+
+
+int main()
+{
+	FILE *fap, *fbp, *fcp;
+
+	int i, j, cnt = 0,check=0;
+	char ary[10][20];
+	char bry[10][20];
+	char cry[10][20];
+
+	fap = fopen("a.txt", "r");
+	if (fap == NULL)
+	{
+		printf("파일을 읽기용으로 불러오는데 실패");
+		exit(1);
+	}
+
+	fbp = fopen("b.txt", "r");
+	if (fbp == NULL)
+	{
+		printf("파일을 읽기용으로 불러오는데 실패");
+		exit(1);
+	}
+
+	fcp = fopen("c.txt", "w");
+	if (fcp == NULL)
+	{
+		printf("파일을 쓰기용으로 불러오는데 실패");
+		exit(1);
+	}
+
+	for (i = 0; i < 10; i++)// 왜 for문으로 하면 될까>>???????????
+	{
+		
+		fgets(ary[i], sizeof(ary[0]), fap); //개행문자까지 저장한다.
+		if (feof(fap))
+		{
+			break;
+		}
+	}
+	for (i = 0; i < 8; i++)
+	{
+		printf("%s", ary[i]);
+	}
+	while (!check)
+	{
+		i = 0;
+		fgets(bry[i], sizeof(bry[i]), fbp); //개행문자까지 저장한다.
+		i++;
+		check = feof(fap);
+	}
+	for (i = 0; i < 8; i++)
+	{
+		printf("%s", bry[i]);
+	}
+
+	for (i = 0; i < 10; i++)
+	{
+		for (j = 0; j < 10; j++)
+		{
+			if (strcmp(bry[i], ary[i]) == 0)
+			{
+				break;
+			}
+			strcpy(cry[i], bry[i]);
+			cnt++;
+		}
+	}
+
+	for (i = 0; i < cnt; i++)
+	{
+		printf("%s", cry[i]);
+	}
+	for (i = 0; i < cnt; i++)
+	{
+		fputs(cry[i], fcp);
+	}
+
+	return 0;
+
+}

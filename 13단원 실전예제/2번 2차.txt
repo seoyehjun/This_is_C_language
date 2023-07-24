@@ -1,0 +1,81 @@
+#include<stdio.h>
+
+void set(int h, int m);
+void show(void);
+void move(void);
+
+int hour, min,day;
+char apm[4];
+
+int main(void)
+{
+	int h, m;
+	int laterm;
+	int i;
+	
+	do
+	{
+		printf("시간을 입력하시오:");
+		scanf("%d", &h);
+		printf("분을 입력하시오:");
+		scanf("%d", &m);
+	} while (h > 24 || m >= 60);
+	
+	set(h,m);
+	show();
+	printf("시간이 얼마나 경과했는지 쓰시오:");
+	scanf("%d", &laterm);
+	for (i = 0; i < laterm; i++)
+	{
+		move();
+	}
+	if (hour > 12 && hour < 24)
+	{
+		hour = hour % 12;
+		printf("%d", hour);
+		
+	}
+	else if (hour >= 24)
+	{
+		hour = hour % 24;
+			strcpy(apm, "AM");
+	}
+	if (hour >= 12)
+	{
+		strcpy(apm, "PM");
+	}
+	printf("현재시간:%d:%d(%s)\n", hour, min, apm);
+
+	return 0;
+}
+void set(int h, int m)
+{
+	hour = h;
+	min = m;
+
+	return;
+}
+void show(void)
+{
+	if (hour > 12)
+	{
+		strcpy(apm, "PM");
+	}
+	else if(hour<=12)
+	{
+		strcpy(apm, "AM");
+	}
+	printf("설정된 시간:%d:%d(%s)\n", hour, min,apm);
+}
+void move(void)
+{
+	min++;
+	if (min >=60)
+	{
+		min = 0;
+		hour++;
+	}
+	
+	
+	return;
+}

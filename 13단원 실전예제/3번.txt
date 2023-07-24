@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<string.h>
+
+char *my_token(char *ps);
+int main(void)
+{
+	char str[80];
+	char *p;
+
+	printf("문장 입력:");
+	gets(str);
+
+	while ((p = my_token(str)) != NULL);
+	{
+		printf("%s\n", p);
+	}
+	return 0;
+}
+char *my_token(char *ps)
+{
+	int i = 0;
+	int j;
+	char temp[80];
+
+    while (*ps != ' ')
+	{
+		i++;
+	}
+	for (j = 0; j < i; j++)
+	{
+		temp[j] = ps[j];
+	}
+	temp[j + 1]='\0';
+	return temp;
+}

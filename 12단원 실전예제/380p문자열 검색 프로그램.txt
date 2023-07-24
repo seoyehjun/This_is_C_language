@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<string.h>
+
+int main(void)
+{
+	
+	char str[100];
+	int str1;
+	char cmpary[30];
+	int cmpary1;
+	int temp=0;
+	int i;
+
+
+	printf("※문장을 입력하시오:"); gets(str);
+	char *pstr = str;
+	str1=strlen(str);
+
+	while (1)
+	{
+		printf("※검색할 문자열 입력(종료는 end):");
+		gets(cmpary); //검색학 문자 입력
+		cmpary1 = strlen(cmpary); //검색한 문자의 길이를 재어서 cmpary1에 저장(27열에서 검색한 문자열의 길이만큼만 검사해야하기에 그떄사용)
+		if (strcmp("end", cmpary)==0)break; //end입력시 모두 종료
+		for (i = 0; i < str1; i++) //처음 입력한 문자열의 길이(문자수)만큼 반복
+		{
+			if(strncmp(pstr,cmpary,cmpary1)==0)temp++; // 문자열 이름은 수정할수가 없기에 포인터를 사용한다    ※이프로젝트에서 재일 중요!!※
+			if (temp == 0) { pstr++; } //(처음에 입력해놓은 문자열의 포인터)
+			else { pstr = pstr + (temp*cmpary1); }
+		}
+		printf("_______________□검색결과:%d개□_______________\n\n\n", temp);
+		temp = 0;                //검색값 초기화(초기화 시키지 않으면 초기값 계속사용)
+		pstr = str;               //처음입력한 문자열의 포인터값도 초기화시켜줍시다.
+	}
+	return 0;
+}
+
+
+
+/*검사횟수를 수정한 수정본*/
+#include<stdio.h>
+#include<string.h>
+
+int main(void)
+{
+	
+	char str[100];
+	int str1;
+	char cmpary[30];
+	int cmpary1;
+	int temp=0;
+	int temp2=0;
+	int i;
+
+
+	printf("※문장을 입력하시오:"); gets(str);
+	char *pstr = str;
+	str1=strlen(str);
+
+	while (1)
+	{
+		printf("※검색할 문자열 입력(종료는 end):");
+		gets(cmpary); //검색학 문자 입력
+		cmpary1 = strlen(cmpary); //검색한 문자의 길이를 재어서 cmpary1에 저장(27열에서 검색한 문자열의 길이만큼만 검사해야하기에 그떄사용)
+		if (strcmp("end", cmpary)==0)break; //end입력시 모두 종료
+		for (i = 0; i < str1-temp2; i++) //처음 입력한 문자열의 길이(문자수)만큼 반복
+		{
+			if(strncmp(pstr,cmpary,cmpary1)==0)temp++; // 문자열 이름은 수정할수가 없기에 포인터를 사용한다    ※이프로젝트에서 재일 중요!!※
+			
+			if (temp == 0) 
+			{
+				pstr++;//(처음에 입력해놓은 문자열의 포인터)
+			} 
+			else 
+			{ 
+				pstr = pstr + (temp*cmpary1); temp2 = temp2 + (temp2*cmpary1); 
+			}
+		}
+		printf("_______________□검색결과:%d개□_______________\n\n\n", temp);
+		temp = 0;                //검색값 초기화(초기화 시키지 않으면 초기값 계속사용)
+		pstr = str;               //처음입력한 문자열의 포인터값도 초기화시켜줍시다.
+	}
+	return 0;
+}

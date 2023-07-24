@@ -1,0 +1,44 @@
+#include<stdio.h>
+
+void swap(char *ary, void *pa, void *pb);
+int main(void)
+{
+	int first_age, second_age;
+	double first_hei, second_hei;
+
+	printf("첫 번째 사람의 나이를 입력하시오:");
+	scanf("%d", &first_age);
+	printf("첫 번째 사람의 키를 입력하시오:");
+	scanf("%lf", &first_hei);
+	printf("두 번째 사람의 나이를 입력하시오:");
+	scanf("%d", &second_age);
+	printf("두 번째 사람의 키를 입력하시오:");
+	scanf("%lf", &second_hei);
+	
+	swap("int", &first_age, &second_age);
+	swap("double", &first_hei, &second_hei);
+
+	printf("첫 번째 사람의 나이는 %d 키는 %.1lf\n", first_age, first_hei);
+	printf("두 번째 사람의 나이는 %d 키는 %.1lf", second_age, second_hei);
+
+	return 0;
+
+}
+void swap(char *ary,void *pa, void *pb)
+{
+	int temp;
+	double dtemp;
+
+	if (strcmp(ary, "int") == 0)
+	{
+		temp = *(int *)pa;
+		*(int *)pa = *(int *)pb;
+		*(int*)pb = temp;
+	}
+	if (strcmp(ary, "double") == 0)
+	{
+		dtemp = *(double *)pa;
+		*(double *)pa = *(double *)pb;
+		*(double *)pb = dtemp;
+	}
+}

@@ -1,0 +1,50 @@
+#include<stdio.h>
+
+int add(int num);
+int main(void)
+{
+	int a;
+	int result;
+
+	printf("판별하고 싶은 값을 입력하시오:");
+	scanf("%d", &a);
+
+	result = add(a);
+	printf("%d는", a);
+
+	if (result == 1)
+	{
+		printf(" 소수입니다");
+	}
+	else
+	{
+		printf(" 소수가 아닙니다");
+	}
+
+}
+
+int add(int num)
+{
+	int i;
+	int temp = 0;
+
+	for (i = 1; i <= num; i++)
+	{
+		if (num%i == 0)
+		{
+			temp += i;
+		}
+
+	}
+	int result;
+
+	if (temp == 1 + num)
+	{
+		result = 1;
+	}
+	else
+	{
+		result = 0;
+	}
+	return result;
+}

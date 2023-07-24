@@ -1,0 +1,190 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+typedef struct
+{
+	int num;
+	char name[30];
+	int korean, english, math, tot;
+	double ave;
+	char grade;
+}STUDENT;
+
+int input_student(STUDENT *);
+void tot(STUDENT *, int);
+void average(STUDENT *, int);
+void print_list(STUDENT *, int);
+void sort_data(STUDENT *);
+void grade(STUDENT *, int);
+
+
+int main(void)
+{ 
+	int cnt;
+	STUDENT s2019[90];
+
+	cnt = input_student(&s2019);
+
+	tot(&s2019, cnt);
+
+	average(&s2019, cnt);
+
+	grade(&s2019, cnt);
+
+	print_list(&s2019, cnt);
+	
+	sort_data(&s2019);
+
+	print_list(&s2019, cnt);
+
+	return 0;
+}
+
+int input_student(STUDENT *s2019)
+{
+	int i;
+
+	
+	for (i = 0; i < 90; i++)
+	{
+		printf("학번을 입력하세요:");
+		scanf("%d", &(s2019[i].num));
+		if (s2019[i].num < 0)return i;
+
+		printf("이름을 입력하세요:");
+		scanf("%s", s2019[i].name);
+
+		printf("국어성적을 입력하세요:");
+		scanf("%d", &(s2019[i].korean));
+
+		printf("영어성적을 입력하세요:");
+		scanf("%d", &(s2019[i].english));
+
+		printf("수학성적을 입력하세요:");
+		scanf("%d", &(s2019[i].math));
+		
+	}
+
+	return i;
+}
+
+
+void tot(STUDENT *s2019, int cnt)
+{
+	int i;
+	for (i = 0; i < cnt; i++)
+	{
+		s2019[i].tot = s2019[i].korean + s2019[i].english + s2019[i].math;
+		
+	}
+
+	return;
+}
+
+
+void average(STUDENT *s2019, int cnt)   
+{
+	int i;
+
+	for (i = 0; i < cnt; i++)
+	{
+		s2019[i].ave = s2019[i].tot / 3;
+	}
+
+	return;
+}
+
+
+void grade(STUDENT *s2019, int cnt)
+{
+	int i;
+
+	for (i = 0; i < cnt; i++)
+	{
+		printf("\n%c\n", s2019[i].grade);
+		if (s2019[i].ave >= 90) s2019[i].grade= 'A';
+		else if (s2019[i].ave >= 80) s2019[i].grade= 'B';
+		else if (s2019[i].ave >= 70) s2019[i].grade ='C';
+		else s2019[i].grade= 'F';
+		printf("\n%c\n", s2019[i].grade);
+		
+	}
+
+	return;
+}
+
+
+void print_list(STUDENT *s2019, int cnt)
+{
+	int i;
+
+	printf("\n\n#정렬 전 데이터\n\n");
+	for (i = 0; i < cnt; i++)
+	{
+		printf("%d  ", s2019[i].num);
+		printf("%s  ", s2019[i].name);
+		printf("%d  ", s2019[i].korean);
+		printf("%d  ", s2019[i].english);
+		printf("%d  ", s2019[i].math);
+		printf("%d  ", s2019[i].tot);
+		printf("%.1lf  ", s2019[i].ave);
+		printf("%c  ", s2019[i].grade);
+		printf("\n");
+	}
+}
+
+void sort_data(STUDENT *pary)
+
+{
+
+	STUDENT temp;
+
+	int i, j;
+	int max;
+
+	for (i = 0; i < 4; i++)
+	{
+		max = i;
+
+		for (j = i + 1; j < 5; j++)
+		{
+			if (pary[max].tot < pary[j].tot)
+			{
+				max = j;
+			}
+		}
+		if (max != i)
+		{
+			temp = pary[max];
+
+			pary[max] = pary[i];
+
+			pary[i] = temp;
+		}
+	}
+}
+
+
+
+
+void print_list2(STUDENT *s2019, int cnt)
+{
+	int i;
+
+	printf("\n\n\n#정렬 후 데이터\n\n");
+	for (i = 0; i < cnt; i++)
+	{
+		printf("%d  ", s2019[i].num);
+		printf("%s  ", s2019[i].name);
+		printf("%d  ", s2019[i].korean);
+		printf("%d  ", s2019[i].english);
+		printf("%d  ", s2019[i].math);
+		printf("%d  ", s2019[i].tot);
+		printf("%.1lf  ", s2019[i].ave);
+		printf("%c  ", s2019[i].grade);
+		printf("\n");
+	}
+	
+	return;
+}

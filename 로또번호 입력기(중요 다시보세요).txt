@@ -1,0 +1,59 @@
+#include<stdio.h>
+
+void input_num(int *lotto_num);    // 배열에 로또 번호를 입력하는 함수입니다.
+void print_num(int *lotto_num);   // 배열에 저장된 값을 출력하는 함수입니다.
+
+int main(void)
+{
+	int lotto_num[6];
+	int size = sizeof(lotto_num) / sizeof(lotto_num[0]);
+
+	input_num(lotto_num, size);
+	print_num(lotto_num, size);
+	
+	return 0;
+}
+void input_num(int *lotto_num, int size)// 배열에 로또 번호를 입력하는 함수입니다.
+{
+	int i;
+	int j;
+	int k=0;
+	for (i = 0; i < size; i++)
+	{
+		printf("번호 입력:");
+		scanf("%d", &lotto_num[i]);
+		for (j = 0; j < i; j++)  // 같은번호가 있는지 확인하는 반복문
+		{
+			if (lotto_num[i] == lotto_num[j])  // 입력한수(lotto_num[i])가 일때까지 입력된수(lotto_num[j])와 같다면.
+			{
+				do 
+				{
+					j = 0;//*****매우 중요******
+					printf("※같은 번호가 있습니다!※\n");
+					printf("번호입력:");
+					scanf("%d", &lotto_num[i]);
+				} while (lotto_num[i] == lotto_num[j]);//다시 입력한수가 또 같다면 다시 반복해줍니다.
+			}
+		}
+	}
+	return;
+}
+void print_num(int *lotto_num, int size)//배열에 저장된 값을 출력하는 함수입니다.
+{
+	int i;
+	printf("\n\n----------I입력한 로또 번호:");
+	for (i = 0; i < size; i++)
+	{
+		if (lotto_num[i] < 10)
+		{
+			printf("%3d", lotto_num[i]);
+		}
+		else
+		{
+			printf("%4d", lotto_num[i]);
+		}
+	}
+	printf("I----------\n\n");
+
+	return;
+}

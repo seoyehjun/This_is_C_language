@@ -1,0 +1,193 @@
+#include<stdio.h>
+
+
+int main(void)
+{
+	int sales[4][7];
+	int i, j, tot1 = 0, tot2 = 0, tot3 = 0, tot4 = 0;
+	int *ptemp;
+	int *psales[4] = { sales[0],sales[1],sales[2],sales[3] };
+
+	for (i = 0; i < 6; i++)
+	{
+		printf("관악점의[%d월] 매출을 입력하시오:", i + 1);
+		scanf("%d", &sales[0][i]);
+		tot1 += sales[0][i];
+	}
+	sales[0][i] = tot1 / 6;
+	
+	for (i = 0; i < 6; i++)
+	{
+		printf("강남점의[%d월] 매출을 입력하시오:", i + 1);
+		scanf("%d", &sales[1][i]); 
+		tot2 += sales[1][i];
+	}
+	sales[1][i] = tot2 / 6;
+	
+	for (i = 0; i < 6; i++)
+	{
+		printf("명동점의[%d월] 매출을 입력하시오:", i + 1);
+		scanf("%d", &sales[2][i]);
+		tot3 += sales[2][i];
+	}
+	sales[2][i] = tot3 / 6;
+	
+	for (i = 0; i < 6; i++)
+	{
+		printf("대림점의[%d월] 매출을 입력하시오:", i + 1);
+		scanf("%d", &sales[3][i]); 
+		tot4 += sales[3][i];
+	}
+	sales[3][i] = tot4 / 6;
+	
+	
+	
+	/*
+	if(tot1<tot2)
+	{
+		ptemp = psales[0];
+		psales[0] = psales[1];
+		psales[1] = ptemp;
+	}
+	if (tot2 < tot3)
+	{
+		ptemp = psales[1];
+		psales[1] = psales[2];
+		psales[2] = ptemp;
+	}
+	if (tot3 < tot4)
+	{
+		ptemp = psales[2];
+		psales[2] = psales[3];
+		psales[3] = ptemp[2];
+	}*/
+	
+
+	for (i = 0; i < 4; i++)
+	{
+		for (j = 0; j < 7; j++)
+		{
+			printf("%3d", psales[i][j]);
+		}
+		printf("\n");
+	}
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+
+#include <string.h>
+
+
+
+
+int main(void)
+
+{
+
+	char branch[4][10] = { "관악점", "강남점", "명동점", "대림점" };
+
+	int selling[4][7] = {
+
+		  {70, 45, 100, 92, 150, 81},
+
+		  {88, 92, 77, 30, 52, 55},
+
+		  {50, 90, 88, 75, 77, 49},
+
+		  {120, 92, 80, 150, 130, 105}
+
+	};
+	char *bp[4];
+	int *sp[4];
+	int i, j, tot;
+	char *btp;
+	int *stp;
+
+	for (i = 0; i < 4; i++)
+	{
+		tot = 0;
+
+		for (j = 0; j < 6; j++)
+		{
+			tot += selling[i][j];
+		}
+		selling[i][6] = (int)(tot / 6.0 + 0.5);
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		sp[i] = selling[i];
+	}
+
+	for (i = 0; i < 4; i++)
+	{
+		bp[i] = branch[i];
+	}
+
+	for (i = 0; i < 3; i++)
+    {
+		for (j = i + 1; j < 4; j++)
+		{
+			if (sp[i][6] < sp[j][6])
+			{
+				stp = sp[i];
+				sp[i] = sp[j];
+				sp[j] = stp;
+
+				btp = bp[i];
+				bp[i] = bp[j];
+				bp[j] = btp;
+			}
+		}
+    }
+	printf("> 실적별 출력...\n");
+
+	for (i = 0; i < 4; i++)
+
+	{
+		printf("%s", bp[i]);
+
+		for (j = 0; j < 7; j++)
+		{
+			printf("%5d", sp[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n> 지점별 출력...\n");
+
+	for (i = 0; i < 4; i++)
+
+	{
+		printf("%s", branch[i]);
+
+		for (j = 0; j < 7; j++)
+		{
+			printf("%5d", selling[i][j]);
+		}
+		printf("\n");
+
+	}
+	return 0;
+
+}
+
+
+
+

@@ -1,0 +1,67 @@
+#include<stdio.h>
+
+void set();
+void show(void);
+void move(void);
+
+
+char pa[4];
+int h, m;
+
+int main(void)
+{
+	int tempmin;
+	int i;
+
+    set(h, m);
+	show();
+	 
+	printf("경과시간(분)입력:");
+	scanf("%d", &tempmin);
+	
+	for (i = 0; i < tempmin; i++)move();
+	printf("현재 시간:%d:%d(%s)",h,m,pa);
+
+	return 0;
+}
+void set()
+{
+	printf("※시간과 분 입력※");
+	printf("시간:");
+	scanf("%d", &h);
+	printf("분");
+	scanf("%d", &m);
+
+	return;
+}
+void show(void)
+{
+	printf("---설정된 시간:%d시간%d분", h, m);
+
+	return;
+}
+void move(void)
+{
+	
+	if (m <= 59)
+	{
+		m++;
+	}
+	
+	if (m >= 60)
+	{
+		m = 0;
+		h++;
+	}
+	
+	if (h > 12)
+	{
+		h = 1;
+		strcpy(pa, "pm");
+	}
+	else
+	{
+		strcpy(pa, "am");
+	}
+	return;
+}

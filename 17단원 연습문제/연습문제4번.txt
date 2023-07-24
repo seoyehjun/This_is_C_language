@@ -1,0 +1,35 @@
+#include<stdio.h>
+
+typedef enum { NUMBER = 1, PHONE_NUMBER } TYPE;
+
+typedef union //저장공간을 공유하는 공용체!
+{
+	int num;
+	char phone[20];
+} PASSWORD;  //PASSWORD가 자료형이 되었쥬?
+
+int main(void)
+{
+	PASSWORD id;
+	TYPE choice;
+
+	printf("원하는 입력방식을 선택하세요\n");
+	printf("1.숫자 4자리\n2.전화번호");
+	scanf("%d", &choice);
+
+	if (choice == NUMBER)
+	{
+		printf("비밀번호 입력");
+		scanf("%d", &id.num);
+		printf("비밀번호는 %d", id.num);
+	}
+	else if (choice == PHONE_NUMBER)
+	{
+		printf("전화번호 입력");
+		scanf("%s", &id.phone);
+		printf("비밀번호는%d", id.phone);
+	}
+
+	return 0;
+	
+}
